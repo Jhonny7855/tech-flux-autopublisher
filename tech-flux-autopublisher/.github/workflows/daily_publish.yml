@@ -1,0 +1,51 @@
+name: Tech Flux Daily AutoPublisher
+
+on:
+  schedule:
+    # 00:30 UTC corresponds to 06:00 AM IST (Indian Standard Time)
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+    inputs:
+      topic_override:
+        description: 'Optional custom topic for today'
+        required: false
+        type: string
+
+jobs:
+  publish-short:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install System Dependencies (FFmpeg & Espeak)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libespeak1 espeak-data
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow gTTS google-generativeai requests
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Daily Automation Pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        run: |
+          echo "Starting Tech Flux AutoPublisher 3.0 workflow..."
+          python scripts/run_automation.py

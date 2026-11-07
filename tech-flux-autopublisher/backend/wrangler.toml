@@ -1,0 +1,32 @@
+name = "tech-flux-backend"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT = "development"
+API_VERSION = "v1"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tech-flux-db"
+database_id = "your-database-id-here"
+
+[[kv_namespaces]]
+binding = "SECRETS"
+id = "your-kv-namespace-id"
+preview_id = "your-preview-kv-namespace-id"
+
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "tech-flux-storage"
+preview_bucket_name = "tech-flux-storage-preview"
+
+[triggers]
+crons = ["0 0 * * *"]  # Runs at 00:00 UTC (06:00 AM IST)
+
+[observability]
+enabled = true
+
+[build]
+command = "npm run build"

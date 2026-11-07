@@ -1,0 +1,29 @@
+{
+  "name": "tech-flux-video-production",
+  "version": "3.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "render": "node dist/render.js",
+    "test": "vitest run",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
+    "canvas": "^2.11.2",
+    "pixi.js": "^7.2.4",
+    "uuid": "^9.0.0",
+    "date-fns": "^2.30.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/fluent-ffmpeg": "^2.1.24",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.2.2",
+    "vitest": "^1.0.0",
+    "eslint": "^8.53.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "tech-flux-backend",
+  "version": "3.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 migrations apply tech-flux-db --remote",
+    "db:migrate:local": "wrangler d1 migrations apply tech-flux-db --local",
+    "db:seed": "node scripts/seed.js",
+    "db:studio": "wrangler d1 execute tech-flux-db --command=\".tables\" --remote",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "hono": "^4.0.0",
+    "zod": "^3.22.4",
+    "jose": "^5.2.0",
+    "googleapis": "^128.0.0",
+    "@google/generative-ai": "^0.2.0",
+    "date-fns": "^2.30.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "typescript": "^5.2.2",
+    "wrangler": "^3.0.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.53.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0"
+  }
+}
