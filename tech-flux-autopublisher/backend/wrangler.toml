@@ -10,7 +10,7 @@ API_VERSION = "v1"
 [[d1_databases]]
 binding = "DB"
 database_name = "tech-flux-db"
-database_id = "your-database-id-here"
+database_id = "96022649-aefa-4e74-8358-715639cc4815"
 
 [[kv_namespaces]]
 binding = "SECRETS"
